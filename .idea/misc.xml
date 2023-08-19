@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BlackConnectSettings" enableJupyterSupport="true" />
+  <component name="DiscordProjectSettings">
+    <option name="show" value="APPLICATION" />
+    <option name="description" value="" />
+  </component>
+  <component name="ExtraIconsSettingsProject">
+    <option name="ignoredPattern" value="" />
+    <option name="additionalUIScale" value="1.0" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="arko-reloader" project-jdk-type="Python SDK" />
+  <component name="ReaderModeSettings">
+    <option name="showWarnings" value="true" />
+  </component>
+</project>
