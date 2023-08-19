@@ -71,9 +71,9 @@ class FileReloader(Reloader):
         watcher: FileWatcher | None = None,
         *,
         watch_stop_event: "AbstractEvent" = Event(),
-        parent_process_queue: Queue = Queue(),
+        process_signal_queue: Queue = Queue(),
     ):
-        super().__init__(process, parent_process_queue=parent_process_queue)
+        super().__init__(process, process_signal_queue=process_signal_queue)
         self._event = watch_stop_event
         self._watcher = (watcher or FileWatcher(PROJECT_ROOT))(self._event)
 

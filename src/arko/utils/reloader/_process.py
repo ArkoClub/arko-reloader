@@ -1,6 +1,6 @@
 import multiprocessing
 from logging import getLogger
-from multiprocessing import Queue, Value, Lock
+from multiprocessing import Lock, Queue, Value
 from typing import Callable, Generic, Optional, TYPE_CHECKING, TypeVar
 
 import psutil
@@ -86,7 +86,9 @@ class Process(Generic[P, R]):
         with self._lock:
             logger.debug(f"{self} 正在启动")
 
-            self._process = spawn_context.Process(target=self._target)
+            self._process = spawn_context.Process(
+                target=self._target, args=self._args, kwargs=self._kwargs
+            )
             self._process.start()
             self._p_process = psutil.Process(self._process.pid)
             self._running.value = True
@@ -137,7 +139,9 @@ class Process(Generic[P, R]):
                 self._p_process.kill()
 
             try:
-                process = spawn_context.Process(target=self._target)
+                process = spawn_context.Process(
+                    target=self._target, args=self._args, kwargs=self._kwargs
+                )
                 process.start()
             except Exception as e:
                 logger.exception(e)

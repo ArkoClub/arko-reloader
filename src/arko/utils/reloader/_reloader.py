@@ -21,10 +21,10 @@ class Reloader(object):
     _task: Thread
 
     def __init__(
-        self, process: Process, *, parent_process_queue: Queue = Queue()
+        self, process: Process, *, process_signal_queue: Queue = Queue()
     ) -> None:
         self._process = process
-        self._queue = parent_process_queue
+        self._queue = process_signal_queue
 
     def __str__(self) -> str:
         return f"<{self.__class__.__name__} {hex(id(self))}>"
