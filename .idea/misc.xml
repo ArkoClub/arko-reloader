@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="Black">
+    <option name="enabledOnReformat" value="true" />
+    <option name="executionMode" value="BINARY" />
+    <option name="pathToExecutable" value="Y:\Program\Anaconda3\Scripts\black.exe" />
+    <option name="sdkUUID" value="b5c0ba45-de12-494c-a119-f00f42ff0d91" />
+  </component>
   <component name="BlackConnectSettings" enableJupyterSupport="true" />
   <component name="DiscordProjectSettings">
     <option name="show" value="APPLICATION" />

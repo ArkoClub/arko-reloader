@@ -1,6 +1,5 @@
 import os
 import sys
-from enum import IntEnum
 from pathlib import Path
 from typing import Union
 
@@ -11,14 +10,26 @@ StrOrPath = Union[str, Path]
 
 PROJECT_ROOT = Path(os.getcwd()).resolve()
 
+try:
+    from enum import IntEnum as Enum
 
-class SIGNAL(IntEnum):
-    STARTUP = 0
-    PAUSE = 1
-    RESUME = 2
-    RELOAD = 3
-    STOP = 4
 
+    class SIGNAL(Enum):
+        STARTUP = 0
+        PAUSE = 1
+        RESUME = 2
+        RELOAD = 3
+        STOP = 4
+except ImportError:
+    from enum import Enum
+
+
+    class SIGNAL(int, Enum):
+        STARTUP = 0
+        PAUSE = 1
+        RESUME = 2
+        RELOAD = 3
+        STOP = 4
 
 if sys.platform == "win32":
     from signal import (

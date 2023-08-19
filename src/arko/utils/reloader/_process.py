@@ -52,7 +52,9 @@ class Target(Generic[P, R]):
         return self._result
 
     @property
-    def result(self) -> R:
+    def result(self) -> R | None:
+        if self._result.empty():
+            return None
         return self._result.get()
 
 
@@ -83,12 +85,12 @@ class Process(Generic[P, R]):
         """启动"""
         with self._lock:
             logger.debug(f"{self} 正在启动")
-            
+
             self._process = spawn_context.Process(target=self._target)
             self._process.start()
             self._p_process = psutil.Process(self._process.pid)
             self._running.value = True
-            
+
             logger.debug(f"{self} 启动完成")
 
     def stop(self) -> None:
@@ -124,6 +126,10 @@ class Process(Generic[P, R]):
         with self._lock:
             self._paused.value = True
             logger.debug(f"正在重载 {self}")
+
+            if not self.is_alive():
+                return
+
             if safely:
                 self._p_process.suspend()
                 logger.debug(f"{self} 已暂停")
